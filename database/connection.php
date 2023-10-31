@@ -17,4 +17,5 @@ if (!$connection) {
 // Now you can use the $connection variable to perform database operations.
 
 // Close the connection when you're done
-mysqli_close($connection);
+
+
