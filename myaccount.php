@@ -76,12 +76,18 @@ if (isset($_POST['register'])) {
         $sql = "INSERT INTO users (`email`, `password`) VALUES ('$email', '$password')";
 
         if (mysqli_query($connection, $sql)) {
-            $_SESSION['message'] = ['type' => 'success', 'text' => 'Registration was successful.'];
+            echo "<script>
+                    toastr.success(`Registration was successful.`);
+                   </script>";
         } else {
-            $_SESSION['message'] = ['type' => 'error', 'text' => 'An error occurred during form submission.'];
-        }
+              echo "<script>
+                    toastr.error(`An error occurred during form submission.`);
+                   </script>";
+         }
     } else {
-        $_SESSION['message'] = ['type' => 'error', 'text' => 'Passwords do not match.'];
+         echo "<script>
+                    toastr.error(`Passwords do not match.`);
+                   </script>";
     }
     mysqli_close($connection);
 }
