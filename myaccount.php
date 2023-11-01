@@ -1,9 +1,9 @@
 <?php
 session_start();
-require_once ('./database/connection.php');
+require_once './database/connection.php';
 
 ?>
-<html lang="en">
+<html lang="en"> 
 <head>
     
     <title>My Account</title>
@@ -28,9 +28,9 @@ require_once ('./database/connection.php');
                     <form action="" method="post">
                         <label for="email" class="form-label">Email</label>
                         <input type="email" name="email" id="email" placeholder="john@example.com"
-                            value="admin@website.com" required="" class="form-field">
+                             required="" class="form-field">
                         <label for="password" class="form-label">Password</label>
-                        <input type="password" name="password" id="password" placeholder="Password" value="admin"
+                        <input type="password" name="password" id="password" placeholder="Password"
                             required="" class="form-field">
                         <input name="login" type="submit" value="Login" class="btn">
                     </form>
@@ -59,7 +59,42 @@ require_once ('./database/connection.php');
 
 </html>
 
-<?php //  Register user
+<?php 
+//  login user
+if (isset($_POST['login'])) {
+    $username = $_POST['email'];
+    $password = $_POST['password'];
+
+    // Prepare and execute the SQL query to check if the user exists with the given email and password
+    $sql = "SELECT * FROM users WHERE email = '$username' AND `password` = '$password'";
+    $result = mysqli_query($connection, $sql);
+  
+    if ($result) {
+        if (mysqli_num_rows($result) == 1) {
+            $row = mysqli_fetch_assoc($result);
+
+            // Password matches, set session variables or perform login actions.
+            $_SESSION['user_id'] = $row['id'];
+            $_SESSION['email'] = $row['email'];
+            echo '<script>
+                    toastr.success(`Login successful.`);
+                  </script>';
+        } else {
+            echo '<script>
+                    toastr.error(`Invalid username or password.`);
+                  </script>';
+        }
+    } else {
+        echo '<script>
+                toastr.error(`Database error.`);
+              </script>';
+    }
+
+    // Close the database connection
+}
+
+
+//  Register user
 
 // Check if the "register" button was clicked.
 if (isset($_POST['register'])) {
@@ -70,29 +105,27 @@ if (isset($_POST['register'])) {
     // Check if the passwords match
     if ($password == $cpassword) {
         // Hash the password for security
-        $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+        // $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
         // Prepare and execute the SQL query to insert the user
         $sql = "INSERT INTO users (`email`, `password`) VALUES ('$email', '$password')";
 
         if (mysqli_query($connection, $sql)) {
-            echo "<script>
+            echo '<script>
                     toastr.success(`Registration was successful.`);
-                   </script>";
+                   </script>';
         } else {
-              echo "<script>
+            echo '<script>
                     toastr.error(`An error occurred during form submission.`);
-                   </script>";
-         }
+                   </script>';
+        }
     } else {
-         echo "<script>
+        echo '<script>
                     toastr.error(`Passwords do not match.`);
-                   </script>";
+                   </script>';
     }
-    mysqli_close($connection);
 }
-    
 
- // Change this to the page you want to redirect to.
+
 
 ?>
