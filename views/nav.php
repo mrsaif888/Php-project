@@ -16,6 +16,7 @@ if (isset($_SESSION['login_msg']) && $_SESSION['login_msg'] == 1) {
                 <?php if (isset($_SESSION['email'])) {
     ?>
                  <a href="logout.php">logout</a>
+                 <a href="#"><?php echo $_SESSION['email']; ?></a>
                  <?php
 } else {?>
                 <a href="myaccount.php">Login</a>

@@ -8,10 +8,14 @@ require_once './database/connection.php';
 <head>
     
     <title>Home</title>
-    <?php include './views/header.php'; ?>
+    
+    <?php include './views/header.php';
+
+    ?>
 </head>
 
 <body>
+
 <?php include './views/nav.php'; ?>
     <main>
         <div class="featured">
