@@ -1,10 +1,25 @@
+<?php
+require_once './database/connection.php';
+if (isset($_SESSION['login_msg']) && $_SESSION['login_msg'] == 1) {
+    echo '<script>
+                    toastr.success(`Login successful.`);
+                  </script>';
+    $_SESSION['login_msg'] = 0;
+}
+?>
 <header>
         <div class="content-wrapper">
             <h1>INSTANT CART</h1>
             <nav>
                 <a href="index.php">Home</a>
                 <a href="products.php">Products</a>
-                <a href="myaccount.php">My Account</a>
+                <?php if (isset($_SESSION['email'])) {
+    ?>
+                 <a href="logout.php">logout</a>
+                 <?php
+} else {?>
+                <a href="myaccount.php">Login</a>
+                <?php } ?>
             </nav>
             <div class="link-icons">
                 <div class="search">

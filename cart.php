@@ -1,13 +1,18 @@
+<?php
+session_start();
+require_once './database/connection.php';
+
+?>
 <html>
 
 <head>
     
     <title>Cart</title>
-    <?php  include('./views/header.php')?>
+    <?php include './views/header.php'; ?>
 </head>
 
 <body>
-<?php include ('./views/nav.php')?>
+<?php include './views/nav.php'; ?>
     <main>
         <div class="cart content-wrapper">
             <h1>Shopping Cart</h1>
@@ -72,7 +77,7 @@
         </div>
 
     </main>
-    <?php include('./views/footer.php')?>
+    <?php include './views/footer.php'; ?>
 
 </body>
 

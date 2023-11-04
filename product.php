@@ -1,13 +1,18 @@
+<?php
+session_start();
+require_once './database/connection.php';
+
+?>
 <html>
 
 <head>
     
     <title>Product</title>
-    <?php  include('./views/header.php')?>
+    <?php include './views/header.php'; ?>
 </head>
 
 <body>
-<?php include ('./views/nav.php')?>
+<?php include './views/nav.php'; ?>
     <main>
         <div class="product content-wrapper">
             <img src="imgs/wallet.jpg" width="500" height="500" alt="Wallet">
@@ -27,7 +32,7 @@
         </div>
 
     </main>
-    <?php include('./views/footer.php')?>
+    <?php include './views/footer.php'; ?>
 
 </body>
 

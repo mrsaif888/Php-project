@@ -59,8 +59,7 @@ require_once './database/connection.php';
 
 </html>
 
-<?php 
-//  login user
+<?php //  login user
 if (isset($_POST['login'])) {
     $username = $_POST['email'];
     $password = $_POST['password'];
@@ -68,7 +67,7 @@ if (isset($_POST['login'])) {
     // Prepare and execute the SQL query to check if the user exists with the given email and password
     $sql = "SELECT * FROM users WHERE email = '$username' AND `password` = '$password'";
     $result = mysqli_query($connection, $sql);
-  
+
     if ($result) {
         if (mysqli_num_rows($result) == 1) {
             $row = mysqli_fetch_assoc($result);
@@ -76,9 +75,8 @@ if (isset($_POST['login'])) {
             // Password matches, set session variables or perform login actions.
             $_SESSION['user_id'] = $row['id'];
             $_SESSION['email'] = $row['email'];
-            echo '<script>
-                    toastr.success(`Login successful.`);
-                  </script>';
+            $_SESSION['login_msg'] = 1;
+            header('location:index.php');
         } else {
             echo '<script>
                     toastr.error(`Invalid username or password.`);
@@ -92,7 +90,6 @@ if (isset($_POST['login'])) {
 
     // Close the database connection
 }
-
 
 //  Register user
 
@@ -125,7 +122,5 @@ if (isset($_POST['register'])) {
                    </script>';
     }
 }
-
-
 
 ?>
