@@ -59,7 +59,12 @@ require_once './database/connection.php';
 
 </html>
 
-<?php //  login user
+<?php
+
+if (isset($_SESSION['email'])) {
+    // code...
+    header('location:index.php');
+}//  login user
 if (isset($_POST['login'])) {
     $username = $_POST['email'];
     $password = $_POST['password'];
