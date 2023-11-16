@@ -11,6 +11,9 @@ require_once './database/connection.php';
     
     <?php include './views/header.php';
 
+    $sql = 'SELECT * FROM products';
+    $result = mysqli_query($connection, $sql);
+
     ?>
 </head>
 
@@ -25,31 +28,36 @@ require_once './database/connection.php';
         <div class="recentlyadded content-wrapper">
             <h2>Recently Added Products</h2>
             <div class="products">
-                <a href="product.php" class="product">
-                    <img src="imgs/wallet.jpg" width="200" height="200" alt="Wallet">
-                    <span class="name">Wallet</span>
+                <?php if ($result) {
+        // Check if there are any rows in the result set
+        if (mysqli_num_rows($result) > 0) {
+            // Output data of each row
+            while ($row = mysqli_fetch_assoc($result)) {
+                ?>
+            <a href="product.php" class="product">
+                    <img src="<?php echo 'imgs/'.$row["img"] ?>" width="200" height="200" alt="Wallet">
+                    <span class="name"><?php echo $row["name"] ?></span>
                     <span class="price">
-                        $14.99 <span class="rrp">$19.99</span>
+                       <?php echo $row["price"]; 
+                            if($row["market_price"] > 0){
+                                echo " <span class='rrp'>".$row["market_price"]."</span>";
+                            }    
+                       ?> 
                     </span>
                 </a>
-                <a href="product.php" class="product">
-                    <img src="imgs/headphones.jpeg" width="200" height="200" alt="Headphones">
-                    <span class="name">Headphones</span>
-                    <span class="price">
-                        $19.99 </span>
-                </a>
-                <a href="product.php" class="product">
-                    <img src="imgs/watch.jpg" width="200" height="200" alt="Smart Watch">
-                    <span class="name">Smart Watch</span>
-                    <span class="price">
-                        $29.99 </span>
-                </a>
-                <a href="product.php" class="product">
-                    <img src="imgs/camera.jpg" width="200" height="200" alt="Digital Camera">
-                    <span class="name">Digital Camera</span>
-                    <span class="price">
-                        $69.99 </span>
-                </a>
+          <?php
+            }
+        } else {
+            echo 'No products found';
+        }
+
+        // Free result set
+        mysqli_free_result($result);
+    } else {
+        echo 'Error: '.mysqli_error($connection);
+    }?>
+                
+               
             </div>
         </div>
 
