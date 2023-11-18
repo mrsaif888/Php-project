@@ -34,15 +34,14 @@ require_once './database/connection.php';
             // Output data of each row
             while ($row = mysqli_fetch_assoc($result)) {
                 ?>
-            <a href="product.php" class="product">
-                    <img src="<?php echo 'imgs/'.$row["img"] ?>" width="200" height="200" alt="Wallet">
-                    <span class="name"><?php echo $row["name"] ?></span>
+            <a href="product.php?id=<?php echo $row['id']; ?>" class="product">
+                    <img src="<?php echo 'imgs/'.$row['img']; ?>" width="200" height="200" alt="Wallet">
+                    <span class="name"><?php echo $row['name']; ?></span>
                     <span class="price">
-                       <?php echo $row["price"]; 
-                            if($row["market_price"] > 0){
-                                echo " <span class='rrp'>".$row["market_price"]."</span>";
-                            }    
-                       ?> 
+                       <?php echo $row['price'];
+                if ($row['market_price'] > 0) {
+                    echo " <span class='rrp'>".$row['market_price'].'</span>';
+                } ?> 
                     </span>
                 </a>
           <?php

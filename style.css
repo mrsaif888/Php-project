@@ -1055,7 +1055,15 @@ footer a:hover {
     margin-right: 10px;
     color: #666;
 }
-
+.responsive-image {
+    max-width: 100%;
+    height: auto;
+}
+.product-info{
+	margin-left: 10px;
+    padding: 5px;
+    width: 100%;
+}
 
 @media screen and (max-width:1050px) {
 	.rhide {

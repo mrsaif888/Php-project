@@ -29,7 +29,7 @@ $result = mysqli_query($connection, $sql);
             <?php
             // Display products
             while ($row = mysqli_fetch_assoc($result)) {
-                echo '<a href="product.php" class="product">';
+                echo '<a href="product.php?id='.$row['id'].'" class="product">';
                 echo '<img src="imgs/'.$row['img'].'" width="200" height="200" alt="'.$row['name'].'">';
                 echo '<span class="name">'.$row['name'].'</span>';
                 echo '<span class="price">$'.$row['price'].'</span>';
