@@ -24,6 +24,43 @@ if (isset($_GET['id']) && ctype_digit($_GET['id']) && $_GET['id'] > 0) {
     exit();
 }
 
+// Check if the form is submitted for adding to the cart
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $quantity = filter_input(INPUT_POST, 'quantity', FILTER_VALIDATE_INT);
+    $productId = filter_input(INPUT_POST, 'product_id', FILTER_VALIDATE_INT);
+
+    $user_id = $_SESSION['user_id'] ?? 0;
+    if ($quantity !== false && $productId !== false && !empty($_SESSION['user_id'])) {
+        // Ensure the quantity is a positive integer
+        if ($quantity > 0) {
+            // Create or update the cart session variable
+            $_SESSION['cart'] = $_SESSION['cart'] ?? [];
+
+            // Check if the product is already in the cart
+            if (isset($_SESSION['cart'][$user_id][$productId])) {
+                // If the product is already in the cart, update the quantity
+                $_SESSION['cart'][$user_id][$productId] += $quantity;
+            } else {
+                // If the product is not in the cart, add it with the specified quantity
+                $_SESSION['cart'][$user_id][$productId] = $quantity;
+            }
+
+            // Redirect to the cart page or any other page as needed
+            header('Location: ./cart.php');
+            exit();
+        }
+    } else {
+        if ($user_id == 0) {
+            header('Location: ./myaccount.php');
+            exit();
+        } else {
+            // // Redirect to the error page if the conditions are not met
+            header('Location: ./error.php');
+            exit();
+        }
+    }
+}
+
 ?>
 
 <html>
@@ -43,8 +80,8 @@ if (isset($_GET['id']) && ctype_digit($_GET['id']) && $_GET['id'] > 0) {
                 <span class="price">
                     $<?php echo $product['price']; ?> <span class="rrp">$<?php echo $product['market_price']; ?></span>
                 </span>
-                <form action="./cart.php" method="post">
-                    <input type="number" name="quantity" value="1" min="1" max="34" placeholder="Quantity" required="">
+                <form action="./product.php?id=<?php echo $product['id']; ?>" method="post">
+                    <input type="hidden" type="number" name="quantity" value="1" min="1" max="34" placeholder="Quantity" required="">
                     <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
                     <input type="submit" value="Add To Cart">
                 </form>
