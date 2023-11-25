@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once './database/connection.php';
+// Handle quantity updates and product removal
 
 ?>
 <html>

@@ -33,7 +33,7 @@ if (isset($_SESSION['cart'][$user_id]) && is_array($_SESSION['cart'][$user_id]))
 }
 
 // Handle quantity updates and product removal
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update'])) {
     foreach ($_POST as $key => $value) {
         if (strpos($key, 'quantity-') !== false) {
             $productId = str_replace('quantity-', '', $key);
@@ -53,6 +53,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
             // }
         }
+    }
+}
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['placeorder'])) {
+    $user_id = $_SESSION['user_id'] ?? 0;
+
+    // Check if the session cart exists and is an array
+    if (isset($_SESSION['cart'][$user_id]) && is_array($_SESSION['cart'][$user_id])) {
+        unset($_SESSION['cart'][$user_id]);
+        header('Location: ./placeorder.php');
+        exit();
     }
 }
 
