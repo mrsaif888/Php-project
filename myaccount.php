@@ -38,6 +38,9 @@ require_once './database/connection.php';
                 <div class="register">
                     <h1>Register</h1>
                     <form action="" method="post">
+                         <label for="name" class="form-label">Name</label>
+                        <input type="text" name="register_name" id="name" placeholder="Enter your name" required=""
+                            class="form-field">
                         <label for="email" class="form-label">Email</label>
                         <input type="email" name="register_email" id="email" placeholder="john@example.com" required=""
                             class="form-field">
@@ -80,6 +83,7 @@ if (isset($_POST['login'])) {
             // Password matches, set session variables or perform login actions.
             $_SESSION['user_id'] = $row['id'];
             $_SESSION['email'] = $row['email'];
+            $_SESSION['name'] = $row['name'];
             $_SESSION['login_msg'] = 1;
             header('location:index.php');
         } else {
@@ -101,30 +105,43 @@ if (isset($_POST['login'])) {
 // Check if the "register" button was clicked.
 if (isset($_POST['register'])) {
     $email = $_POST['register_email'];
+    $name = $_POST['register_name'];
     $password = $_POST['register_password'];
     $cpassword = $_POST['cpassword'];
 
     // Check if the passwords match
     if ($password == $cpassword) {
-        // Hash the password for security
-        // $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+        // Check if the email already exists in the database
+        $checkEmailQuery = "SELECT * FROM users WHERE email = '$email'";
+        $checkEmailResult = mysqli_query($connection, $checkEmailQuery);
 
-        // Prepare and execute the SQL query to insert the user
-        $sql = "INSERT INTO users (`email`, `password`) VALUES ('$email', '$password')";
-
-        if (mysqli_query($connection, $sql)) {
+        if (mysqli_num_rows($checkEmailResult) > 0) {
+            // Email already exists, show a message
             echo '<script>
-                    toastr.success(`Registration was successful.`);
+                    toastr.error(`Email ID already exists.`);
                    </script>';
         } else {
-            echo '<script>
-                    toastr.error(`An error occurred during form submission.`);
-                   </script>';
+            // Email does not exist, proceed with registration
+            // Hash the password for security
+            // $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+
+            // Prepare and execute the SQL query to insert the user
+            $insertUserQuery = "INSERT INTO users (`name`,`email`, `password`) VALUES ('$name','$email', '$password')";
+
+            if (mysqli_query($connection, $insertUserQuery)) {
+                echo '<script>
+                        toastr.success(`Registration was successful.`);
+                       </script>';
+            } else {
+                echo '<script>
+                        toastr.error(`An error occurred during form submission.`);
+                       </script>';
+            }
         }
     } else {
         echo '<script>
-                    toastr.error(`Passwords do not match.`);
-                   </script>';
+                toastr.error(`Passwords do not match.`);
+               </script>';
     }
 }
 

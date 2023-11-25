@@ -13,10 +13,10 @@ if (isset($_SESSION['login_msg']) && $_SESSION['login_msg'] == 1) {
             <nav>
                 <a href="index.php">Home</a>
                 <a href="products.php">Products</a>
-                <?php if (isset($_SESSION['email'])) {
+                <?php if (isset($_SESSION['name'])) {
     ?>
                  <a href="logout.php">logout</a>
-                 <a href="#"><?php echo $_SESSION['email']; ?></a>
+                 <a href="#"><?php echo $_SESSION['name']; ?></a>
                  <?php
 } else {?>
                 <a href="myaccount.php">Login</a>

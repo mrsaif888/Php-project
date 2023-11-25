@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 18, 2023 at 11:56 AM
+-- Generation Time: Nov 25, 2023 at 11:59 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -56,6 +56,7 @@ INSERT INTO `products` (`id`, `name`, `desc`, `price`, `market_price`, `quantity
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
+  `name` varchar(250) NOT NULL,
   `email` varchar(250) NOT NULL,
   `password` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -64,9 +65,9 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `email`, `password`) VALUES
-(8, 'admin@website.com', 'admin'),
-(10, 'saif@gmail.com', '123456');
+INSERT INTO `users` (`id`, `name`, `email`, `password`) VALUES
+(8, 'Admin', 'admin@website.com', 'admin'),
+(10, 'Saif', 'saif@gmail.com', '123456');
 
 --
 -- Indexes for dumped tables
@@ -98,7 +99,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
