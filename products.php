@@ -19,7 +19,6 @@ $result = mysqli_query($connection, $sql);
     <title>Products</title>
     <?php include './views/header.php'; ?>
 </head>
-
 <body>
     <?php include './views/nav.php'; ?>
     <main>
@@ -30,7 +29,7 @@ $result = mysqli_query($connection, $sql);
             // Display products
             while ($row = mysqli_fetch_assoc($result)) {
                 echo '<a href="product.php?id='.$row['id'].'" class="product">';
-                echo '<img src="imgs/'.$row['img'].'" width="200" height="200" alt="'.$row['name'].'">';
+                echo '<img src="'.$proj_root_url.'/imgs/'.$row['img'].'" width="200" height="200" alt="'.$row['name'].'">';
                 echo '<span class="name">'.$row['name'].'</span>';
                 echo '<span class="price">$'.$row['price'].'</span>';
                 echo '</a>';
@@ -48,7 +47,7 @@ $result = mysqli_query($connection, $sql);
 
             // Previous link
             if ($page > 1) {
-                echo '<a href="products.php?p='.($page - 1).'">Previous</a>';
+                echo '<a href="'.$proj_root_url.'/products.php?p='.($page - 1).'">Previous</a>';
             }
 
             // Page numbers
@@ -57,13 +56,13 @@ $result = mysqli_query($connection, $sql);
                 if ($i === $page) {
                     echo '<span class="current">'.$i.'</span>';
                 } else {
-                    echo '<a href="products.php?p='.$i.'">'.$i.'</a>';
+                    echo '<a href="'.$proj_root_url.'/products.php?p='.$i.'">'.$i.'</a>';
                 }
             }
 
             // Next link
             if ($page < $totalPages) {
-                echo '<a href="products.php?p='.($page + 1).'">Next</a>';
+                echo '<a href="'.$proj_root_url.'/products.php?p='.($page + 1).'">Next</a>';
             }
 
             echo '</div>';

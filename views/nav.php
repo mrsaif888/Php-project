@@ -1,5 +1,5 @@
 <?php
-require_once './database/connection.php';
+
 if (isset($_SESSION['login_msg']) && $_SESSION['login_msg'] == 1) {
     echo '<script>
                     toastr.success(`Login successful.`);
@@ -11,15 +11,15 @@ if (isset($_SESSION['login_msg']) && $_SESSION['login_msg'] == 1) {
         <div class="content-wrapper">
             <h1>INSTANT CART</h1>
             <nav>
-                <a href="index.php">Home</a>
-                <a href="products.php">Products</a>
+                <a href="<?php echo $proj_root_url; ?>/index.php">Home</a>
+                <a href="<?php echo $proj_root_url; ?>/products.php">Products</a>
                 <?php if (isset($_SESSION['name'])) {
     ?>
-                 <a href="logout.php">logout</a>
+                 <a href="<?php echo $proj_root_url; ?>/logout.php">logout</a>
                  <a href="#"><?php echo $_SESSION['name']; ?></a>
                  <?php
 } else {?>
-                <a href="myaccount.php">Login</a>
+                <a href="<?php echo $proj_root_url; ?>/myaccount.php">Login</a>
                 <?php } ?>
             </nav>
             <div class="link-icons">

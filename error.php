@@ -1,4 +1,5 @@
 <?php
+require_once './database/connection.php';
 // This is a basic error page example.
 // You might want to customize it further based on your needs.
 
@@ -33,7 +34,7 @@
 <body>
     <h1>Error</h1>
     <p>Oops! Something went wrong.</p>
-    <p><a href="index.php">Go back to the home page</a></p>
+    <p><a href="<?php echo $proj_root_url; ?>/index.php">Go back to the home page</a></p>
 </body>
 
 </html>

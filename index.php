@@ -34,8 +34,8 @@ require_once './database/connection.php';
             // Output data of each row
             while ($row = mysqli_fetch_assoc($result)) {
                 ?>
-            <a href="product.php?id=<?php echo $row['id']; ?>" class="product">
-                    <img src="<?php echo 'imgs/'.$row['img']; ?>" width="200" height="200" alt="Wallet">
+            <a href="<?php echo $proj_root_url; ?>/product.php?id=<?php echo $row['id']; ?>" class="product">
+                    <img src="<?php echo $proj_root_url.'/imgs/'.$row['img']; ?>" width="200" height="200" alt="Wallet">
                     <span class="name"><?php echo $row['name']; ?></span>
                     <span class="price">
                        <?php echo $row['price'];

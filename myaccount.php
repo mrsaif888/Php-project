@@ -1,4 +1,5 @@
 <?php
+ob_start();
 session_start();
 require_once './database/connection.php';
 
@@ -65,9 +66,10 @@ require_once './database/connection.php';
 <?php
 
 if (isset($_SESSION['email'])) {
-    // code...
     header('location:index.php');
+    exit();
 }//  login user
+
 if (isset($_POST['login'])) {
     $username = $_POST['email'];
     $password = $_POST['password'];
@@ -86,6 +88,7 @@ if (isset($_POST['login'])) {
             $_SESSION['name'] = $row['name'];
             $_SESSION['login_msg'] = 1;
             header('location:index.php');
+            exit();
         } else {
             echo '<script>
                     toastr.error(`Invalid username or password.`);
@@ -145,4 +148,5 @@ if (isset($_POST['register'])) {
     }
 }
 
+ob_end_flush();
 ?>

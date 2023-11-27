@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php include './views/nav.php'; ?>
     <main>
         <div class="product content-wrapper">
-            <img  class="responsive-image" src="imgs/<?php echo $product['img']; ?>" width="500" height="500" alt="<?php echo $product['name']; ?>">
+            <img  class="responsive-image" src="<?php echo $proj_root_url; ?>/imgs/<?php echo $product['img']; ?>" width="500" height="500" alt="<?php echo $product['name']; ?>">
             <div class="product-info">
                 <h1 class="name"><?php echo $product['name']; ?></h1>
                 <span class="price">

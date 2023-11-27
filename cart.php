@@ -118,14 +118,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['remove'])) {
                         <?php foreach ($cartProducts as $product) { ?>
                             <tr>
                                 <td class="img">
-                                    <a href="product.php">
-                                        <img src="imgs/<?php echo $product['img']; ?>" alt="<?php echo $product['name']; ?>">
+                                    <a href="<?php echo $proj_root_url; ?>/product.php">
+                                        <img src="<?php echo $proj_root_url; ?>/imgs/<?php echo $product['img']; ?>" alt="<?php echo $product['name']; ?>">
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="product.php"><?php echo $product['name']; ?></a>
+                                    <a href="<?php echo $proj_root_url; ?>/product.php"><?php echo $product['name']; ?></a>
                                     <br>
-                                    <a href="cart.php?remove=<?php echo $product['id']; ?>" class="remove">Remove</a>
+                                    <a href="<?php echo $proj_root_url; ?>/cart.php?remove=<?php echo $product['id']; ?>" class="remove">Remove</a>
                                 </td>
                                 <td class="price">$<?php echo $product['price']; ?></td>
                                 <td class="quantity">
