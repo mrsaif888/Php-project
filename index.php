@@ -1,4 +1,7 @@
 <?php
+//error check
+error_reporting(0);
+ini_set('display_errors', '0');
 session_start();
 require_once './database/connection.php';
 
@@ -21,9 +24,24 @@ require_once './database/connection.php';
 
 <?php include './views/nav.php'; ?>
     <main>
+
         <div class="featured">
             <h2>Gadgets</h2>
             <p>EveryDay Use Electronic Items</p>
+            <?php
+    // Dumping variables for debugging purposes
+    $gadgetsTitle = "Gadgets";
+    $gadgetsDescription = "EveryDay Use Electronic Items";
+
+    // Dump variables
+    echo "<pre>";
+    var_dump($gadgetsTitle);
+    var_dump($gadgetsDescription);
+    echo "</pre>";
+    ?>
+    <!-- Output -->
+    <!-- string(7) "Gadgets"
+string(29) "EveryDay Use Electronic Items" -->
         </div>
         <div class="recentlyadded content-wrapper">
             <h2>Recently Added Products</h2>
