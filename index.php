@@ -90,6 +90,9 @@ string(29) "EveryDay Use Electronic Items" -->
         </div>
 
     </main>
+    <!-- <?php
+    die('Manual Breakpoint: Stopping execution for debugging');
+    ?> -->
     <?php include './views/footer.php'; ?>
 
 </body>
