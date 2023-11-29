@@ -30,21 +30,32 @@ require_once './database/connection.php';
             <p>EveryDay Use Electronic Items</p>
             <?php
     // Dumping variables for debugging purposes
-    $gadgetsTitle = "Gadgets";
-    $gadgetsDescription = "EveryDay Use Electronic Items";
+    // $gadgetsTitle = "Gadgets";
+    // $gadgetsDescription = "EveryDay Use Electronic Items";
 
-    // Dump variables
-    echo "<pre>";
-    var_dump($gadgetsTitle);
-    var_dump($gadgetsDescription);
-    echo "</pre>";
-    ?>
+    // // Dump variables
+    // echo "<pre>";
+    // var_dump($gadgetsTitle);
+    // var_dump($gadgetsDescription);
+    // echo "</pre>";
+    // ?>
     <!-- Output -->
     <!-- string(7) "Gadgets"
 string(29) "EveryDay Use Electronic Items" -->
         </div>
         <div class="recentlyadded content-wrapper">
             <h2>Recently Added Products</h2>
+            <?php
+    // // Perform some actions related to Recently Added Products
+    // // For demonstration purposes, let's simulate an error
+    // $undefinedVariable = $nonExistentArray['key'];
+
+    // // Add a stack trace for debugging
+    // $stackTrace = debug_backtrace();
+    // echo "<pre>";
+    // var_dump($stackTrace);
+    // echo "</pre>";
+    // ?>
             <div class="products">
                 <?php if ($result) {
         // Check if there are any rows in the result set
