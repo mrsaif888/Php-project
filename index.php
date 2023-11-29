@@ -56,6 +56,11 @@ string(29) "EveryDay Use Electronic Items" -->
     // var_dump($stackTrace);
     // echo "</pre>";
     // ?>
+     <!-- <?php
+    // Add a custom error log
+    $logMessage = "Error: Recently Added Products section - Something went wrong!";
+    error_log($logMessage, 3, "path/to/your/error.log");
+    ?> -->
             <div class="products">
                 <?php if ($result) {
         // Check if there are any rows in the result set
